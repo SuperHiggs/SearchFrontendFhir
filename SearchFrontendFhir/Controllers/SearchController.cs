@@ -18,8 +18,9 @@ namespace SearchFrontendFhir.Controllers
             return View();
         }
 
-        public IActionResult Results()
+        public IActionResult Results(string search)
         {
+
             return View();
         }
 
