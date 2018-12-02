@@ -6,7 +6,6 @@
     <img  alt="Fhir Quick Search" id="logo" src="~/images/fhirLogo.png" />
 </div>
 
-
 @using (Html.BeginForm("Results", "Search", FormMethod.Post, new { @class = "form-inline form-control-lg" }))
 {
         <div class="row" style="padding: 25px">
@@ -17,6 +16,49 @@
         <div class="row center-block">
             <input id="searchSubmit" class="btn btn-primary" type="submit" value="Search">
         </div>
-
 }
+
+<script type="text/javascript">
+
+    var options = {
+        url: function (phrase) {
+            var searchValue = "/api/AutoComplete?value=" + phrase;
+            $("#hidden").val(searchValue)
+            return searchValue;
+        },
+        //listLocation: "entry",
+        getValue: function (e) {
+            return e.name;
+        },
+        ajaxSettings: {
+            dataType: "json",
+            method: "GET",
+            @*beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer @ViewData["token"]')
+            },*@
+            data: {
+                dataType: "json"
+            },
+            success: function (data, status, jqXHR) {
+                //var bundle = data;
+                //for (var item of bundle.entry) {
+                //    item.resource.text = "";
+                //};
+                //$("#hidden").val(JSON.stringify(bundle));
+                console.log(data);
+            }
+
+        },
+
+        preparePostData: function (data) {
+             data.phrase = $("#search").val();
+            return data;
+        },
+        requestDelay: 200
+    };
+
+    $("#search").easyAutocomplete(options);
+
+
+</script>
     
