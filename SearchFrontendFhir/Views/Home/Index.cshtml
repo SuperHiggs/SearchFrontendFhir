@@ -9,7 +9,7 @@
 </div>
 
 
-@using (Html.BeginForm("Search", "QuickSearch", FormMethod.Post, new { @class = "form-inline form-control-lg" }))
+@using (Html.BeginForm("Results", "Search", FormMethod.Post, new { @class = "form-inline form-control-lg" }))
 {
         <div class="row" style="padding: 25px">
             <input id="search" type="text" name="search"  />
@@ -19,7 +19,6 @@
         <div class="row center-block">
             <input id="searchSubmit" class="btn btn-primary" type="submit" value="Search">
         </div>
-        
 
 }
     
